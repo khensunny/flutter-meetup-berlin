@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:groceries_app/l10n/app_localizations.dart';
 import 'package:groceries_app/ui/ui.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-import 'addons/github_addon.dart';
+import 'custom/github_addon.dart';
 import 'main.directories.g.dart';
 
 void main() {
@@ -43,14 +44,25 @@ class WidgetbookApp extends StatelessWidget {
         child: child,
       ),
       addons: [
-        GitHubAddon('widgetbook/groceries-demo'),
-        DeviceFrameAddon(
-          devices: [
-            Devices.ios.iPhone13,
-            Devices.ios.iPad,
-          ],
-          initialDevice: Devices.ios.iPhone13,
+        BuilderAddon(
+          name: 'Disable Animations (Cloud)',
+          builder: (context, child) {
+            // In Widgetbook Cloud context, disable the animations
+            // so that the [Loader] widget doesn't show up in all
+            // the reviews' diffs.
+            if (WidgetbookState.of(context).previewMode) {
+              timeDilation = double.maxFinite;
+            }
+
+            return child;
+          },
         ),
+        GitHubAddon('widgetbook/groceries-demo'),
+        ViewportAddon([
+          Viewports.none,
+          IosViewports.iPhone13,
+          IosViewports.iPad,
+        ]),
         InspectorAddon(),
         LocalizationAddon(
           locales: AppLocalizations.supportedLocales,
@@ -68,24 +80,21 @@ class WidgetbookApp extends StatelessWidget {
               data: AppThemeData.dark,
             ),
           ],
-          themeBuilder: (context, theme, child) => ColoredBox(
-            color: theme.background.primary,
-            child: DefaultTextStyle(
-              style: theme.typography.bodyMedium,
-              child: AppTheme(
-                data: theme,
-                child: child,
-              ),
-            ),
+          themeBuilder: (context, theme, child) => AppTheme(
+            data: theme,
+            child: child,
           ),
         ),
         AlignmentAddon(),
+        TextScaleAddon(),
         BuilderAddon(
           name: 'SafeArea',
           builder: (_, child) => SafeArea(
             child: child,
           ),
         ),
+        // ignore: experimental_member_use
+        SemanticsAddon(),
       ],
     );
   }
