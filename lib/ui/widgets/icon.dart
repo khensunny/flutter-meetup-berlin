@@ -12,7 +12,7 @@ class Icon extends StatelessWidget {
     this.color,
   });
 
-  final IconData icon;
+  final FaIconData icon;
   final double scale;
   final VoidCallback? onTap;
   final Color? color;

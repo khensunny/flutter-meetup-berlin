@@ -9,6 +9,9 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/l10n/*.dart"
+    - build/**
+    - android/**
+    - web/**
 
 linter:
   rules:

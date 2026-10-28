@@ -24,7 +24,7 @@ final config = Config(
         // In Widgetbook Cloud context, disable the animations
         // so that the [Loader] widget doesn't show up in all
         // the reviews' diffs.
-        if (WidgetbookState.of(context).previewMode) {
+        if (WidgetbookState.maybeOf(context)?.previewMode ?? false) {
           timeDilation = double.maxFinite;
         }
 
@@ -59,6 +59,7 @@ final config = Config(
             AppLocalizations.localizationsDelegates,
           ),
           ThemeMode<AppThemeData>('Light', AppThemeData.light, appThemeBuilder),
+          ViewportMode(IosViewports.iPhone13),
         ],
       ),
       ScenarioDefinition(
@@ -69,6 +70,7 @@ final config = Config(
             AppLocalizations.localizationsDelegates,
           ),
           ThemeMode<AppThemeData>('Dark', AppThemeData.dark, appThemeBuilder),
+          ViewportMode(IosViewports.iPhone13),
         ],
       ),
       ScenarioDefinition(
@@ -79,6 +81,7 @@ final config = Config(
             AppLocalizations.localizationsDelegates,
           ),
           ThemeMode<AppThemeData>('Light', AppThemeData.light, appThemeBuilder),
+          ViewportMode(IosViewports.iPhone13),
         ],
       ),
       ScenarioDefinition(
@@ -89,6 +92,7 @@ final config = Config(
             AppLocalizations.localizationsDelegates,
           ),
           ThemeMode<AppThemeData>('Dark', AppThemeData.dark, appThemeBuilder),
+          ViewportMode(IosViewports.iPhone13),
         ],
       ),
     ],

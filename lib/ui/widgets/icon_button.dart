@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart' hide Icon;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../ui.dart';
 
@@ -9,7 +10,7 @@ class IconButton extends StatefulWidget {
     required this.onPressed,
   });
 
-  final IconData icon;
+  final FaIconData icon;
   final VoidCallback onPressed;
 
   @override

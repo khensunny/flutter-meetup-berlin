@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart' hide Icon;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../ui.dart';
 
@@ -14,8 +15,8 @@ class NavigationItem extends StatelessWidget {
   });
 
   final bool isSelected;
-  final IconData iconUnselected;
-  final IconData iconSelected;
+  final FaIconData iconUnselected;
+  final FaIconData iconSelected;
   final String text;
   final bool showBadge;
   final VoidCallback? onTap;

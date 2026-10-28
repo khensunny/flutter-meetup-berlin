@@ -33,7 +33,7 @@ class GitHubAddon extends Addon<String> with SingleFieldOnly<String> {
           ),
           const SizedBox(height: 12),
           ElevatedButton.icon(
-            icon: const Icon(FontAwesomeIcons.github, size: 18),
+            icon: const FaIcon(FontAwesomeIcons.github, size: 18),
             label: Text(repository),
             onPressed: () =>
                 launchUrl(Uri.parse('https://github.com/$repository')),

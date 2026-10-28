@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' hide Icon;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../ui.dart';
 
@@ -10,7 +11,7 @@ class EmptyState extends StatelessWidget {
     required this.message,
   });
 
-  final IconData icon;
+  final FaIconData icon;
   final String title;
   final String message;
 
