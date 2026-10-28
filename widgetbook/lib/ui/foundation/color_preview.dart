@@ -1,12 +1,28 @@
 import 'package:flutter/widgets.dart';
 import 'package:groceries_app/ui/ui.dart';
 
+class DesignSystemColorPreview extends StatelessWidget {
+  const DesignSystemColorPreview({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.all(24),
+      child: Column(
+        spacing: 16,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ColorPreview(name: 'Primary', color: DesignSystemColor.primary),
+          ColorPreview(name: 'Brand', color: DesignSystemColor.brand),
+          ColorPreview(name: 'Grey', color: DesignSystemColor.grey),
+        ],
+      ),
+    );
+  }
+}
+
 class ColorPreview extends StatelessWidget {
-  const ColorPreview({
-    super.key,
-    required this.name,
-    required this.color,
-  });
+  const ColorPreview({super.key, required this.name, required this.color});
 
   final String name;
   final DesignSystemColor color;
@@ -17,22 +33,12 @@ class ColorPreview extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 8,
       children: [
-        Text(
-          name,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
         ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Wrap(
             children: color.keys
-                .map(
-                  (i) => _ColorShadePreview(
-                    color: color[i]!,
-                    weight: i,
-                  ),
-                )
+                .map((i) => _ColorShadePreview(color: color[i]!, weight: i))
                 .toList(),
           ),
         ),
@@ -42,10 +48,7 @@ class ColorPreview extends StatelessWidget {
 }
 
 class _ColorShadePreview extends StatelessWidget {
-  const _ColorShadePreview({
-    required this.color,
-    required this.weight,
-  });
+  const _ColorShadePreview({required this.color, required this.weight});
 
   final Color color;
   final int weight;
